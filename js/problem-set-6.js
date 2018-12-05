@@ -40,7 +40,33 @@ ctx.strokeText('Hello, World!', 10, 50);
  */
 
 function drawRectangle() {
+let width=prompt("Enter a value for width")
+let height=prompt("Enter a value for height")
+let yvalue=prompt("Enter a valur for y")
+let xvalue=prompt("Enter a value for x")
 
+if(width < 1){
+  alert("Your width is too small")
+} else if (width >550){
+  alert("Your width is too big")
+}
+if(height <1){
+  alert("Your height is too small")
+} else if (height > 550){
+  alert("Your height is too big")
+}
+if(yvalue < 5){
+  alert("Your y coordinate is too small")
+} else if (yvalue >550){
+  alert("Your y coordinate is too big")
+}
+if(xvalue < 5){
+  alert("Your x coordinate is too small")
+} else if (xvalue > 550){
+  alert("Your x coordinate is too small")
+}
+var rectangle = document.getElementById("canvas2").getContext("2d")
+rectangle.strokeRect(height, width, yvalue, xvalue);
 }
 
 /*
