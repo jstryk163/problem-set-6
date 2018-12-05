@@ -95,9 +95,33 @@ rectangle.strokeRect(height, width, yvalue, xvalue);
  */
 
 function drawColoredRectangle() {
-
+let ctx = prompt("Enter a color")
+let rectcolor;
+if (color = "black"){
+  rectcolor = "black";
 }
-
+if (color = "blue"){
+  rectcolor = "blue";
+}
+if (color = "green"){
+  rectcolor = "green";
+}
+if (color = "organge"){
+  rectcolor = "orange";
+}
+if (color = "purple"){
+  rectcolor = "purple";
+}
+if (color = "yellow"){
+  rectcolor = "yellow";
+}
+if (color = "red"){
+  rectcolor = "red";
+}
+var colorRect = document.getElementById('canvas3').getContext('2d')
+colorRect.fillstyle = rectcolor
+colorRect.fillRect(10, 10, 100, 50)
+}
 /*
  * Triangle. 5 points.
  *
