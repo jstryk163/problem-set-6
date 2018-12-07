@@ -95,32 +95,44 @@ rectangle.strokeRect(height, width, yvalue, xvalue);
  */
 
 function drawColoredRectangle() {
-let ctx = prompt("Enter a color")
+let color = prompt("Enter a color")
 let rectcolor;
-if (color = "black"){
-  rectcolor = "black";
+if (color == "black"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "black"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-if (color = "blue"){
-  rectcolor = "blue";
+if (color == "blue"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "blue"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-if (color = "green"){
-  rectcolor = "green";
+if (color == "green"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "green"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-if (color = "organge"){
-  rectcolor = "orange";
+if (color == "orange"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "orange"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-if (color = "purple"){
-  rectcolor = "purple";
+if (color == "purple"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "purple"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-if (color = "yellow"){
-  rectcolor = "yellow";
+if (color == "yellow"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "yellow"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-if (color = "red"){
-  rectcolor = "red";
+if (color == "red"){
+  var colorRect = document.getElementById('canvas3').getContext('2d')
+  colorRect.fillstyle = "red"
+  colorRect.fillRect(10, 10, 100, 50)
 }
-var colorRect = document.getElementById('canvas3').getContext('2d')
-colorRect.fillstyle = rectcolor
-colorRect.fillRect(10, 10, 100, 50)
+
 }
 /*
  * Triangle. 5 points.
