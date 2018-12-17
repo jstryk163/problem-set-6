@@ -95,42 +95,20 @@ rectangle.strokeRect(height, width, yvalue, xvalue);
  */
 
 function drawColoredRectangle() {
-let color = prompt("Enter a color")
-let rectcolor;
-if (color == "black"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "black"
-  colorRect.fillRect(10, 10, 100, 50)
-}
-if (color == "blue"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "blue"
-  colorRect.fillRect(10, 10, 100, 50)
-}
-if (color == "green"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "green"
-  colorRect.fillRect(10, 10, 100, 50)
-}
-if (color == "orange"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "orange"
-  colorRect.fillRect(10, 10, 100, 50)
-}
-if (color == "purple"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "purple"
-  colorRect.fillRect(10, 10, 100, 50)
-}
-if (color == "yellow"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "yellow"
-  colorRect.fillRect(10, 10, 100, 50)
-}
-if (color == "red"){
-  var colorRect = document.getElementById('canvas3').getContext('2d')
-  colorRect.fillstyle = "red"
-  colorRect.fillRect(10, 10, 100, 50)
+  let canvas = document.getElementById("canvas3");
+  let context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  let color;
+  while(true){
+    color=prompt("Please Enter a Valid Color")
+    if(color=="black" || color=="blue" || color=="green" || color=="orange" || color=="purple" || color=="red" || color=="yellow") {
+      break;
+    }
+  }
+  context.fillStyle=color;
+  context.fillRect(10,10,100,50);
+
 }
 
 }
@@ -164,9 +142,40 @@ if (color == "red"){
  */
 
 function drawTriangle() {
-
+  let x=10;
+  let y=10;
+  let p1;
+  let p2:
+  let p3;
+  let canvas = document.getElementById("canvas4");
+  let context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  while(true){
+	p1=Number(prompt("Enter side 1 length"));
+	p2=Number(prompt("Enter side 2 length"));
+	p3=Number(prompt("Enter hypotenuse length"));
+	if(((p1**2) + (p2**2) == (p3**2)) && p1>0 && p2>0 && p3>0 && canvas.width-x-p1>=0 && canvas.height-y-p2>=0){
+		break;
+	}else{
+		alert("That is not a valid triangle")
+  }
 }
-
+//Line A
+ context.beginPath(); //Begins a path
+ context.moveTo(x,y); //Choses the starting point
+ context.lineTo(x,y+p1); //Line A coordinates: It is a vertical line, therefore the same x value but different y-value
+ context.stroke(); //Draws the line
+ //Line B
+ context.beginPath();
+ context.moveTo(x,y+p1);
+ context.lineTo(x+p2,y+p1);
+ context.stroke();
+ //Hypotenuse
+ context.beginPath();
+ context.moveTo(x,y);
+ context.lineTo(x+p2,y+p1);
+ context.stroke();
+}
 /*
  * Smile. 7 points.
  *
@@ -187,8 +196,36 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
+  let radius;
+  let canvas = document.getElementById('canvas5');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+	while(true){
+		radius=Number(prompt("Please enter a good radius please"));
+		if(radius>=1 && radius<=canvas.width && Number.isInteger(radius)){
+			break;
+		}
+	}
+  let x=canvas.width;
+  let y=canvas.height;
+  let eyeRadius=radius*.1
+  let mouthRadius=radius*.7
+  ctx.beginPath();
+  ctx.arc(x/2, y/2, radius, 0, Math.PI*2); // Face
+  ctx.stroke();
 
-}
+  ctx.beginPath(); //Right Eye
+  ctx.arc(x/2 - radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
+  ctx.stroke();
+
+  ctx.beginPath(); //Left Eye
+  ctx.arc(x/2+radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
+  ctx.stroke();
+
+  ctx.beginPath(); //Mouth
+  ctx.arc(x/2, y/2, mouthRadius,0, Math.PI);
+  ctx.stroke();
+  }
 
 /*
  * Star. 9 points.
@@ -209,8 +246,38 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
+    let canvas = document.getElementById('canvas6');
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-}
+      let outRadius=Number(prompt("Enter a valid outer radius"));
+      let inRadius=Number(prompt("Enter a valid inner radius"));
+      if (outRadius>=inRadius && canvas.width>=outRadius+125 && canvas.height>=outRadius+125 && inRadius>=1 && outRadius>=1){
+        let points=5;
+        let x1=[];
+        let y1=[];
+        let x2=[];
+        let y2=[];
+        for(let i=0;i<points;i++){
+          x1.push(Math.cos((Math.PI*2*i)/points-(Math.PI/2))*outRadius+125);
+          y1.push(Math.sin((Math.PI*2*i)/points-(Math.PI/2))*outRadius+125);
+          x2.push(Math.cos(((Math.PI*2*i)/points)-(Math.PI/2)+(Math.PI/points))*inRadius+125);
+          y2.push(Math.sin(((Math.PI*2*i)/points)-(Math.PI/2)+(Math.PI/points))*inRadius+125);
+        }
+        ctx.beginPath();
+        ctx.moveTo(x1[0], y1[0]);
+        for(let j=0;j<x1.length;j++){
+          ctx.lineTo(x2[j], y2[j]);
+          ctx.lineTo(x1[j+1], y1[j+1]);
+        }
+        ctx.lineTo(x1[0], y1[0]);
+        ctx.stroke();
+        ctx.closePath();
+    }
+    else{
+        alert('invalid inputs');
+      }
+  }
 
 /*
  * Stop Sign. 7 points.
@@ -228,8 +295,39 @@ function drawStar() {
  */
 
 function drawStopSign() {
+  let canvas = document.getElementById('canvas7');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let sidelength=80;
+  let center=[10+(sidelength)/2+sidelength/Math.sqrt(2), 10+(sidelength/2)+(sidelength/Math.sqrt(2))]
+  console.log(center)
+  let points=8;
+  let px=[];
+  let py=[];
 
+  for(let i=0;i<points;i++){
+    px.push(Math.cos(((Math.PI*2*i)/points)-Math.PI/8)*100+center[0]);
+    py.push(Math.sin(((Math.PI*2*i)/points)-Math.PI/8)*100+center[1]);
+  }
+  ctx.beginPath();
+  ctx.moveTo([px][0], py[0]);
+  for(let j=0;j<px.length;j++){
+    ctx.lineTo(px[j], py[j]);
+  }
+  ctx.lineTo(px[0], py[0]);
+  ctx.stroke();
+
+  ctx.fillStyle="red";
+  ctx.fill();
+  ctx.closePath();
+  ctx.beginPath();
+  ctx.textAlign="center";
+  ctx.font="56px Georgia";
+  ctx.fillStyle="white";
+  ctx.fillText("STOP", center[0], center[1]+15);
+  ctx.closePath()
 }
+
 
 /*
  * Pyramid. 7 points.
@@ -250,8 +348,27 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
+  let canvas = document.getElementById('canvas8');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let sLength=Number(prompt("enter a side length"));
+  let x=10;
+  let y=canvas.height-10;
+  let i=0;
+  lineNumber=1;
+  while(i<5){
+    for(let j=0+lineNumber;j<=5;j++){
+      ctx.strokeRect(x,y-sLength,sLength,sLength);
+      x+=sideLength;
+    }
+    x=10+(sLength/2)*lineNumber;
+    y-=sLength;
+    lineNumber++;
+    i++;
+  }
 
 }
+
 
 /*
  * House. 7 points.
@@ -283,5 +400,40 @@ function drawPyramid() {
  */
 
 function drawHouse() {
+  let canvas = document.getElementById('canvas9');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  while(true){
+  doorC=prompt("Enter a color for the Door");
+  houseC=prompt("Enter a color for the House");
+  if((doorC=="brown" || doorC=="blue" || doorC=="green" || doorC=="orange" || doorC=="purple" || doorC=="red" || doorC=="yellow")
+  && (houseC=="brown" || houseC=="blue" || houseC=="green" || houseC=="orange" || houseC=="purple" || houseC=="red" || houseC=="yellow")) {
+    break;
+  }
+  else{
+      alert("One or more of your colors is invalid")
+  }
+}
+let x=150;
+let lengthHouse=576;
+let heightHouse=400;
+let y=canvas.height-heightHouse-10;
+ctx.beginPath();
+ctx.fillStyle=houseC;
+ctx.fillRect(x,y,lengthHouse,heightHouse);
+ctx.fillStyle=doorC;
+ctx.fillRect(x+(lengthHouse/2)-30,y+300,60,100);
+ctx.fillStyle="gray";
+ctx.moveTo(x,y);
+ctx.lineTo(x+286,150);
+ctx.lineTo(x+lengthHouse,y);
+ctx.lineTo(x,y);
+ctx.fill();
+ctx.fillStyle="#ADD8E6";	
+ctx.fillRect(300,y+100, 50, 50);
+ctx.fillRect(526,y+100, 50, 50);
+ctx.fillRect(300,y+200, 50, 50);
+ctx.fillRect(526,y+200, 50, 50);
+ctx.closePath();
 }
